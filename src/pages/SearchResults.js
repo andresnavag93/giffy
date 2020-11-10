@@ -1,9 +1,8 @@
 import { useState, useEffect } from "react";
-
-import Gif from "./Gif";
+import ListOfGifs from "../components/ListOfGifs/ListOfGifs";
 import getGifs from "../services/getGifs";
 
-const ListOfGifs = ({ params }) => {
+const SearchResults = ({ params }) => {
   const [loading, setLoading] = useState(false);
   const { keyword } = params;
   const [gifs, setGifs] = useState([]);
@@ -19,14 +18,7 @@ const ListOfGifs = ({ params }) => {
   if (loading) {
     return <div> Loading </div>;
   }
-
-  return (
-    <>
-      {gifs.map(({ id, title, url }) => {
-        return <Gif key={id} title={title} url={url} />;
-      })}
-    </>
-  );
+  return <ListOfGifs gifs={gifs} />;
 };
 
-export default ListOfGifs;
+export default SearchResults;

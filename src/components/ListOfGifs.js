@@ -3,16 +3,30 @@ import { useState, useEffect } from "react";
 import Gif from "./Gif";
 import getGifs from "../services/getGifs";
 
-const ListOfGifs = ({ keyword = "panda" }) => {
+const ListOfGifs = ({ params }) => {
+  const [loading, setLoading] = useState(false);
+  const { keyword } = params;
   const [gifs, setGifs] = useState([]);
 
   useEffect(() => {
-    getGifs({ keyword }).then((gifs) => setGifs(gifs));
-  }, []); //eslint-disable-line
+    setLoading(true);
+    getGifs({ keyword }).then((gifs) => {
+      setGifs(gifs);
+      setLoading(false);
+    });
+  }, [keyword]);
 
-  return gifs.map(({ id, title, url }) => {
-    return <Gif key={id} title={title} url={url} />;
-  });
+  if (loading) {
+    return <div> Loading </div>;
+  }
+
+  return (
+    <>
+      {gifs.map(({ id, title, url }) => {
+        return <Gif key={id} title={title} url={url} />;
+      })}
+    </>
+  );
 };
 
 export default ListOfGifs;

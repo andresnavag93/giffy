@@ -1,9 +1,11 @@
-const Gif = (singleGif) => {
+import "./Gif.css";
+
+const Gif = ({ title, url, id }) => {
   return (
-    <div>
-      <h4> {singleGif.title} </h4>
-      <img src={singleGif.url} alt="Panda" />
-    </div>
+    <a href={`#${id}`} className="Gif">
+      <h4> {title} </h4>
+      <img src={url} alt="Panda" />
+    </a>
   );
 };
 

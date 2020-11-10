@@ -11,4 +11,11 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  text-decoration: none;
+  padding: 16px;
+}
+
+a {
+  color: white;
+  font-size: 32px;
 }
